@@ -1,6 +1,5 @@
 const getView = (data) => `
   <h2>Seccion Inicio</h2>
-  <p>Mostrar un slider</p>
   <h3>Destacados</h3>
   <div class="propiedades">
     ${
