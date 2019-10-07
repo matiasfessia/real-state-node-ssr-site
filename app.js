@@ -1,15 +1,27 @@
 const express = require('express');
+const session = require('express-session');
+const cookieParser = require('cookie-parser');
 const siteCtrl = require('./controllers/site.controller')
-const homeCtrl = require('./controllers/home.controller')
+const contactCtrl = require('./controllers/contact.controller')
 const config = require('./config');
 
 const app = express();
+app.use(cookieParser());
+app.use(session({
+  secret: "Shh, its a secret!",
+  resave: false,
+  saveUninitialized: true
+}));
+
+app.use(express.urlencoded({ extended: true }));
+
 app.use(express.static('public'));
 
-app.get('/', (req, res) => res.status(200).send(siteCtrl.renderSite({ content: homeCtrl.renderHome()})));
-app.get('/alquiler', (req, res) => res.status(200).send(siteCtrl.renderSite({ content: `<h2>Seccion Alquiler</h2>` })));
-app.get('/venta', (req, res) => res.status(200).send(siteCtrl.renderSite({ content: `<h2>Seccion Venta</h2>` })));
-app.get('/contacto', (req, res) => res.status(200).send(siteCtrl.renderSite({ content: `<h2>Seccion Contacto</h2>` })));
+app.get('/', siteCtrl.renderHomeSection);
+app.get('/alquiler', siteCtrl.renderPropertiesForRentSection);
+app.get('/venta', siteCtrl.renderPropertiesForSaleSection);
+app.get('/contacto', siteCtrl.renderContactSection);
+app.post('/contacto', contactCtrl.sendMessageContact);
 
 // start server
 app.listen(config.port, () => console.log(`Listening on port ${config.port}!`));

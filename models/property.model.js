@@ -1,72 +1,68 @@
 const data = ([
   {
-    description: 'casa banda norte 110mts2',
+    description: 'Deptos en Pozp, sector oeste',
     type: 'sale',
-    price: '60.000 usd',
+    price: '60.000 USD',
     featured: true
   },
   {
-    description: 'casa san esteban 310mts2',
+    description: 'Exclusivos departamentos de 1 dormitorio a estrenar',
     type: 'sale',
-    price: '260.000 usd',
+    price: '56.000 USD',
     featured: true,
   },
   {
-    description: 'depto centrico 40mts',
-    type: 'rent',
-    price: '7.000 ARS',
+    description: 'Se vende casa en calle estrada',
+    type: 'sale',
+    price: '10.000.000 ARS',
     featured: true,
   },
   {
-    description: 'casa banda norte 110mts2',
+    description: 'Casa de 3 dormitorios en Bimaco',
     type: 'sale',
-    price: '60.000 usd',
+    price: '80.000 USD',
     featured: false,
   },
   {
-    description: 'casa san esteban 310mts2',
-    type: 'sale',
-    price: '260.000 usd',
-    featured: false,
-  },
-  {
-    description: 'depto centrico 40mts',
+    description: 'Departamento en condominio Alma 2 dormitorios',
     type: 'rent',
-    price: '7.000 ARS',
+    price: '13.000 ARS',
     featured: false,
   },
   {
-    description: 'casa banda norte 110mts2',
+    description: 'Casa en Country Riverside',
     type: 'sale',
-    price: '60.000 usd',
+    price: '350.000 USD',
     featured: false,
   },
   {
-    description: 'casa san esteban 310mts2',
-    type: 'sale',
-    price: '260.000 usd',
-    featured: false,
-  },
-  {
-    description: 'depto centrico 40mts',
+    description: 'Alquilo departamento de un dormitorio, edificio Piazza V',
     type: 'rent',
-    price: '7.000 ARS',
+    price: '8.000 ARS',
+    featured: false,
+  },
+  {
+    description: 'Alquilo casa macrocentro con galpo, dos dormitorios, dos baños, sin comision y sin expensas',
+    type: 'rent',
+    price: '25.000 ARS',
+    featured: false,
+  },
+  {
+    description: 'Vendo casa con detalles. 215 mts2',
+    type: 'sale',
+    price: '4.500.000 ARS',
     featured: false,
   }
 ]);
 
-const getForSaleProperties = () => {
-  // array.filter()
-  return []; // aqui deberia retornar un array con las propiedades destacadas, no un array vacio.
+const getPropertiesFeatured = () => data.filter(property => (property.featured));
+
+const getPropertiesForRent = () => data.filter(property => (property.type === 'rent'));
+
+const getPropertiesForSale = () => data.filter(property => (property.type === 'sale'));
+
+module.exports = {
+  getPropertiesFeatured,
+  getPropertiesForRent,
+  getPropertiesForSale
 };
-
-const getForRentProperties = () => {
-  return []; // aqui deberia retornar un array con las propiedades en alquiler, no un array vacio.
-};
-
-const getFeatureProperties = () => {
-  return []; // aqui deberia retornar un array con las propiedades en venta, no un array vacio.
-};
-
-
-module.exports = { getFeatureProperties }

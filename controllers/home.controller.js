@@ -1,9 +1,9 @@
 const propertyModel = require('../models/property.model')
 const homeView = require('../views/home.view')
 
-const renderHome = () => {
-  const featureProperties = propertyModel.getFeatureProperties();
-  return homeView.getView({ featureProperties });
+const renderHomeSection = () => {
+  const properties = propertyModel.getPropertiesFeatured();
+  return homeView.getView({ properties });
 }
 
-module.exports = { renderHome }
+module.exports = { renderHomeSection }

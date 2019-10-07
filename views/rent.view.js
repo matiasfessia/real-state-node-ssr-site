@@ -1,6 +1,5 @@
 const getView = (data) => `
-  <h2>Seccion Inicio</h2>
-  <h3>Destacados</h3>
+  <h2>Propiedades en alquiler</h2>
   <div class="propiedades">
     ${
       data.properties.map((property) => (`
