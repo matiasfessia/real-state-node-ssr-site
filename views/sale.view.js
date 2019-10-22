@@ -1,8 +1,9 @@
-const getView = (data) => `
+const getView = (properties) => `
   <h2>Propiedades en venta</h2>
   <div class="propiedades">
+
     ${
-      data.properties.map((property) => (`
+      properties.map((property) => (`
         <div>
           <h1>${property.description} [${property.type}]</h1>
           <p>${property.price}</p>

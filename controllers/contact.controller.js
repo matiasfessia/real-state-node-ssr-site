@@ -1,20 +1,25 @@
 const contactView = require('../views/contact.view')
+const { check, validationResult } = require('express-validator');
 
 // GET
 const renderContact = (req, res) => contactView.getView(req.session);
 
+const validateContactForm = ([
+  check('email', 'El email es requerido.').not().isEmpty(),
+  check('email', 'El email no es válido.').isEmail(),
+  check('subject', 'El asunto es requerido.').not().isEmpty(),
+  check('message', 'El mensaje es requerido.').not().isEmpty()
+]);
+
 // POST
 const sendMessageContact = (req, res) => {
-  // 1 data validation
-  let errors = [];
-  if (typeof req.body.email === 'undefined' || req.body.email.length === 0) {
-    errors.push('email es requerido')
-  }
-  req.session.errors = errors;
-
-  // 2 send email
-  // @todo send the email using a service as sendgrid or local smpt with nodemail
-  if (errors.length === 0 ) {
+  // 1 data validation  
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    req.session.errors = errors.array();
+  } else {
+    // 2 send email
+    // @todo send the email using a service as sendgrid or local smpt with nodemail
     req.session.messageSent = true;
   }
 
@@ -24,5 +29,6 @@ const sendMessageContact = (req, res) => {
 
 module.exports = {
   renderContact,
+  validateContactForm,
   sendMessageContact
 }

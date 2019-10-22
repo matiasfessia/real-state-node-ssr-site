@@ -1,7 +1,7 @@
-const contactCtrl = require('../controllers/contact.controller');
 const homeCtrl = require('../controllers/home.controller');
 const rentCtrl = require('../controllers/rent.controller');
 const saleCtrl = require('../controllers/sale.controller');
+const contactCtrl = require('../controllers/contact.controller');
 
 const siteView = require('../views/site.view')
 const config = require('../config');
@@ -14,8 +14,8 @@ const renderSite = (content) => {
   return siteView.getView(data);
 }
 
-const renderHomeSection = (req, res) => {
-  const content = homeCtrl.renderHomeSection(req, res);
+const renderHomeSection = async (req, res) => {
+  const content = await homeCtrl.renderHomeSection(req, res);
   res.status(200).send(renderSite({ content }));
 }
 
@@ -24,8 +24,8 @@ const renderPropertiesForRentSection = (req, res) => {
   res.status(200).send(renderSite({ content }));
 }
 
-const renderPropertiesForSaleSection = (req, res) => {
-  const content = saleCtrl.renderSaleSection(req, res);
+const renderPropertiesForSaleSection = async (req, res) => {
+  const content = await saleCtrl.renderSaleSection(req, res);
   res.status(200).send(renderSite({ content }));
 }
 
