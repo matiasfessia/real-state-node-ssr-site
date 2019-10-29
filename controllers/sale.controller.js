@@ -1,5 +1,5 @@
-const propertyModel = require('../models/property.model')
-const saleView = require('../views/sale.view')
+const propertyModel = require('../models/property.model');
+const saleView = require('../views/sale.view');
 
 const renderSaleSection = async () => {
   try {

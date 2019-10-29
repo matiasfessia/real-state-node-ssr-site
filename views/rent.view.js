@@ -1,12 +1,18 @@
-const getView = (data) => `
+const getView = (properties) => `
   <h2>Propiedades en alquiler</h2>
+  <select name="sector">
+    <option value="Banda Norte">Banda Norte</option>
+    <option value="Castelli">Castelli</option>
+    <option value="Centro">Centro</option>
+  </select>
   <div class="propiedades">
     ${
-      data.properties.map((property) => (`
-        <div>
+      properties.map((property) => (`
+        <a href="http://localhost:3007/propiedad/${property.id}">
           <h1>${property.description} [${property.type}]</h1>
           <p>${property.price}</p>
-        </div>
+          <p><em>Sector:</em> ${property.sector ? property.sector : '-'}</p>
+        </a>
       `)).join('')
     }
   </div>

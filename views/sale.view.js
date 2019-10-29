@@ -1,7 +1,6 @@
 const getView = (properties) => `
   <h2>Propiedades en venta</h2>
   <div class="propiedades">
-
     ${
       properties.map((property) => (`
         <div>

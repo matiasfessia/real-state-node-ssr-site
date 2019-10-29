@@ -5,7 +5,11 @@ const PropertySchema = Schema({
   description: String,
   type: String,
   price: String,
-  featured: Boolean
+  featured: Boolean,
+  sector: {
+    type: String,
+    enum: ['Banda Norte', 'Castelli', 'Centro']
+  }
 });
 
 const propertyModel = mongoose.model('properties', PropertySchema);

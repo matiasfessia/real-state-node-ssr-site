@@ -1,6 +1,7 @@
 const homeCtrl = require('../controllers/home.controller');
 const rentCtrl = require('../controllers/rent.controller');
 const saleCtrl = require('../controllers/sale.controller');
+const detailCtrl = require('../controllers/detail.controller');
 const contactCtrl = require('../controllers/contact.controller');
 
 const siteView = require('../views/site.view')
@@ -19,13 +20,18 @@ const renderHomeSection = async (req, res) => {
   res.status(200).send(renderSite({ content }));
 }
 
-const renderPropertiesForRentSection = (req, res) => {
-  const content = rentCtrl.renderRentSection(req, res);
+const renderPropertiesForRentSection = async (req, res) => {
+  const content = await rentCtrl.renderRentSection(req, res);
   res.status(200).send(renderSite({ content }));
 }
 
 const renderPropertiesForSaleSection = async (req, res) => {
   const content = await saleCtrl.renderSaleSection(req, res);
+  res.status(200).send(renderSite({ content }));
+}
+
+const renderPropertyDetailSection = async (req, res) => {
+  const content = await detailCtrl.renderDetailSection(req, res);
   res.status(200).send(renderSite({ content }));
 }
 
@@ -40,5 +46,6 @@ module.exports = {
   renderHomeSection,
   renderPropertiesForRentSection,
   renderPropertiesForSaleSection,
+  renderPropertyDetailSection,
   renderContactSection
 }

@@ -20,13 +20,14 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
 app.get('/', siteCtrl.renderHomeSection);
+app.get('/propiedad/:id/', siteCtrl.renderPropertyDetailSection);
 app.get('/alquiler', siteCtrl.renderPropertiesForRentSection);
 app.get('/venta', siteCtrl.renderPropertiesForSaleSection);
 app.get('/contacto', siteCtrl.renderContactSection);
 app.post('/contacto', contactCtrl.validateContactForm , contactCtrl.sendMessageContact);
 app.post('/contacto', [check('email').isEmail()], contactCtrl.sendMessageContact);
 
-mongoose.connect('mongodb://127.0.0.1:27018/spacios', { useNewUrlParser: true })
+mongoose.connect(config.databaseUrl, { useNewUrlParser: true })
   .then(() => console.log('Database connection established'))
   .catch((error) => console.log(`MongoDB connection error: ${error}`));
 
