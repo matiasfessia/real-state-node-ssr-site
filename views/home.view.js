@@ -3,10 +3,11 @@ const getView = (properties) => `
   <div class="propiedades">
     ${
       properties.map((property) => (`
-        <div>
+        <a href="http://localhost:3007/propiedad/${property.slug}">
           <h1>${property.description} [${property.type}]</h1>
           <p>${property.price}</p>
-        </div>
+          <p><em>Sector:</em> ${property.sector ? property.sector : '-'}</p>
+        </a>
       `)).join('')
     }
   </div>
