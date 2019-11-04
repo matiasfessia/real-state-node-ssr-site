@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const PropertySchema = Schema({
   description: String,
+  slug: String,
   type: String,
   price: String,
   featured: Boolean,

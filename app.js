@@ -20,7 +20,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
 app.get('/', siteCtrl.renderHomeSection);
-app.get('/propiedad/:id/', siteCtrl.renderPropertyDetailSection);
+app.get('/propiedad/:slug/', siteCtrl.renderPropertyDetailSection);
 app.get('/alquiler', siteCtrl.renderPropertiesForRentSection);
 app.get('/venta', siteCtrl.renderPropertiesForSaleSection);
 app.get('/contacto', siteCtrl.renderContactSection);

@@ -3,8 +3,9 @@ const detailView = require('../views/detail.view');
 
 const renderDetailSection = async (req, res) => {
   try {
-    const { id } = req.params;
-    const property = await propertyModel.findById(id);
+    const { slug } = req.params;
+    const property = await propertyModel.findOne({slug});
+    console.log(property);
     return detailView.getView(property);
   } catch (error) {
     console.log(error);
