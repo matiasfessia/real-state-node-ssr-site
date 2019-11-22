@@ -1,18 +1,22 @@
 const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
-const PropertySchema = Schema({
-  description: String,
+const propertySchema = Schema({
+  title: String,
   slug: String,
-  type: String,
-  price: String,
+  description: String,
   featured: Boolean,
-  sector: {
+  type:  {
     type: String,
-    enum: ['Banda Norte', 'Castelli', 'Centro']
+    enum: ['sell', 'rent', 'sell/rent']
+  },
+  price: Number,
+  currency: {
+    type: String,
+    enum: ['USD', 'ARS']
   }
 });
 
-const propertyModel = mongoose.model('properties', PropertySchema);
+const propertyModel = mongoose.model('properties', propertySchema);
 
 module.exports = propertyModel;
